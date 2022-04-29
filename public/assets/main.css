@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "Dana-Regular";
+    src: url("./Dana-Regular.ttf");
+}
+
+html {
+    font-family: "Dana-Regular" !important;;
+}
+hr{
+    margin: 10px 0;
+    border-color: #3c404024;
+}
+table{
+    text-align: center ;
+}
+table th{
+    text-align: center !important;
+}
+.Vue-Toastification__container{
+    direction: ltr;
+}
+.Vue-Toastification__toast-body{
+    font-family: "Dana-Regular" !important;;
+}

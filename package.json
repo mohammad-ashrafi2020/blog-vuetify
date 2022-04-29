@@ -7,15 +7,26 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@mdi/font": "5.9.55",
+    "axios": "^0.26.1",
     "core-js": "^3.8.3",
+    "roboto-fontface": "*",
+    "sweetalert2": "^11.4.10",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vue-toastification": "^2.0.0-rc.5",
+    "vuetify": "npm:@vuetify/nightly@next",
+    "vuex": "^4.0.0",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0"
+    "@vue/cli-service": "~5.0.0",
+    "sass": "^1.38.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.4.8",
+    "vuetify-loader": "^2.0.0-alpha.0"
   }
 }

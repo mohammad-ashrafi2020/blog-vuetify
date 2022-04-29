@@ -1,25 +1,87 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import {createRouter, createWebHistory} from 'vue-router'
+import HomeView from '../pages/HomeView.vue'
+import AdminLayout from "@/Layouts/AdminLayout";
+import Index from "@/pages/admin/IndexAdmin";
+
+import UserIndex from "../pages/admin/users/IndexPage";
+import AddUser from "../pages/admin/users/AddUser";
+import EditUser from "../pages/admin/users/EditUser";
+
+import IndexCategory from "../pages/admin/categories/IndexCategory";
+import AddCategory from "../pages/admin/categories/AddCategory";
+import EditCategory from "../pages/admin/categories/EditCategory";
+
+import IndexPost from "../pages/admin/posts/IndexPost";
+import AddPost from "../pages/admin/posts/AddPost";
+import EditPost from "../pages/admin/posts/EditPost";
+
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    {
+        path: '/',
+        name: 'home',
+        component: HomeView
+    },
+    {
+        path: "/admin",
+        component: AdminLayout,
+        children: [
+            {
+                path: "",
+                component: Index
+            },
+            {
+                path: "users",
+                component: UserIndex
+            },
+            {
+                path: "users/add",
+                name:"addUser",
+                component: AddUser
+            }
+            ,
+            {
+                path: "users/Edit/:id",
+                name:"editUser",
+                component: EditUser
+            },
+
+            {
+                path: "categories",
+                component: IndexCategory
+            },
+            {
+                path: "categories/add",
+                name:"addCategory",
+                component: AddCategory
+            },
+            {
+                path: "categories/Edit/:id",
+                name:"editCategory",
+                component: EditCategory
+            },
+            {
+                path: "posts",
+                name:"posts",
+                component: IndexPost
+            },
+            {
+                path: "posts/add",
+                name:"addPost",
+                component: AddPost
+            },
+            {
+                path: "posts/edit/:id",
+                name:"editPost",
+                component: EditPost
+            }
+        ]
+    }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+    history: createWebHistory(process.env.BASE_URL),
+    routes
 })
 
 export default router
