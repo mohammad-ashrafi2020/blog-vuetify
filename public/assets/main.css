@@ -22,3 +22,10 @@ table th{
 .Vue-Toastification__toast-body{
     font-family: "Dana-Regular" !important;;
 }
+.custom-select{
+    width: 100%;
+    border-bottom: 1px solid #808080a3;
+    height: 50px;
+    border-radius: 5px;
+    background: #80808024;
+}

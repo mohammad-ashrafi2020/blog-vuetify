@@ -40,7 +40,7 @@
           </router-link>
         </v-list>
       </v-navigation-drawer>
-      <v-main style="height: 100vh">
+      <v-main style="min-height: 100vh">
         <div class="py-7 px-7">
           <router-view></router-view>
         </div>

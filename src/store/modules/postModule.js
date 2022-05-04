@@ -32,7 +32,6 @@ export default {
                 });
         },
         getPostByFilter(context, {pageId, take, title}) {
-            console.log(pageId,take,title);
             context.commit("setLoading", true);
             return axios.get(`/api/post`, {params: {pageId, take, title}})
                 .then(res => {
@@ -59,7 +58,11 @@ export default {
             context.commit("setLoading", true);
             return axios.put(`/api/post`,post)
                 .catch(err => {
-                    toast.error("عملیات با شکست مواجه شد");
+                    if(err.response.data){
+                        toast.error(err.response.data);
+                    }else{
+                        toast.error("عملیات با شکست مواجه شد");
+                    }
                 }).finally(() => {
                     context.commit("setLoading", false);
                 });
