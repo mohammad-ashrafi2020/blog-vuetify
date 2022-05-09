@@ -33,20 +33,31 @@
       </tr>
       </tbody>
     </v-table>
+    <v-pagination
+        v-model="pageId"
+        :length="userFilter.pageCount"
+        :total-visible="7"
+        next-icon="mdi-chevron-left"
+        prev-icon="mdi-chevron-right"
+    ></v-pagination>
   </div>
 </template>
 
 <script setup>
 
-import {computed, onMounted} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import {useStore} from "vuex";
 import {useRouter} from "vue-router";
 
 const store = useStore();
 const router = useRouter();
+const pageId = ref(1);
 const userFilter = computed(() => store.state.userModule.usersFilter);
+watch(pageId,()=>{
+  store.dispatch("getUsers", {pageId: pageId.value, take: 10})
+})
 onMounted(() => {
-  store.dispatch("getUsers", {pageId: 1, take: 10})
+  store.dispatch("getUsers", {pageId: pageId.value, take: 10})
 })
 </script>
 

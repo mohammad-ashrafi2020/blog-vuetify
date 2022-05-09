@@ -2,6 +2,7 @@
   <h1>افزودن کاربر جدید</h1>
   <hr/>
   <v-form
+      class="elevation-7 pr-3 pl-3 pt-5 pb-12"
       ref="form"
       lazy-validation
       @submit.prevent="addPost"

@@ -40,15 +40,22 @@
         </td>
       </tr>
       <tr v-if="postFilter.entityCount===0">
-        <td colspan="5">کاربری برای نمایش وجود ندارد</td>
+        <td colspan="5">پستی برای نمایش وجود ندارد</td>
       </tr>
       </tbody>
     </v-table>
+    <v-pagination
+        v-model="filter.pageId"
+        :length="postFilter.pageCount"
+        :total-visible="7"
+        next-icon="mdi-chevron-left"
+        prev-icon="mdi-chevron-right"
+    ></v-pagination>
   </div>
 </template>
 
 <script setup>
-import {computed, onMounted, reactive, ref} from "vue";
+import {computed, onMounted, reactive, ref, watch} from "vue";
 import {useToast} from "vue-toastification";
 import Swal from 'sweetalert2'
 import {PostImageUrl} from "@/utilities/ImageUrls"
@@ -58,10 +65,11 @@ import postModule from "@/store/modules/postModule";
 
 const store = useStore();
 const toast = useToast();
-const filter = reactive({pageId: 1, take: 20, title: ''})
+const filter = reactive({pageId: 1, take: 1, title: ''})
 const postFilter = computed(() => store.state.postModule.postsFilter);
 
 function filterPosts() {
+  filter.pageId = 1;
   store.dispatch("getPostByFilter", filter)
 }
 
@@ -77,20 +85,25 @@ const deletePost = (postId) => {
   }).then((result) => {
     if (result.isConfirmed) {
       store.dispatch("deletePost", postId).then(res => {
-        if(res.status===200){
+        if (res.status === 200) {
           toast.success("حذف با موفقیت انجام شد");
-          store.dispatch("getPostByFilter",filter);
+          store.dispatch("getPostByFilter", filter);
         }
-      }).catch(error=>{
-        if(error.response.data){
+      }).catch(error => {
+        if (error.response.data) {
           toast.error(error.response.data)
-        }else{
+        } else {
           toast.error("مشکلی در عملیات رخ داده است")
         }
       });
     }
   })
 }
+watch(
+    () => filter.pageId,
+    () => {
+      store.dispatch("getPostByFilter", filter)
+    });
 onMounted(() => {
   store.dispatch("getPostByFilter", filter)
 })

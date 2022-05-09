@@ -1,6 +1,10 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import HomeView from '../pages/HomeView.vue'
+import HomePage from '../pages/HomeView.vue'
+
 import AdminLayout from "@/Layouts/AdminLayout";
+import MainLayout from "@/Layouts/MainLayout";
+
+
 import Index from "@/pages/admin/IndexAdmin";
 
 import UserIndex from "../pages/admin/users/IndexPage";
@@ -19,8 +23,14 @@ import EditPost from "../pages/admin/posts/EditPost";
 const routes = [
     {
         path: '/',
-        name: 'home',
-        component: HomeView
+        component: MainLayout,
+        children: [
+            {
+                path:"",
+                name:"home",
+                component: HomePage
+            }
+        ]
     },
     {
         path: "/admin",

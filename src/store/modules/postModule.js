@@ -4,7 +4,9 @@ import {useToast} from "vue-toastification";
 const toast = useToast();
 export default {
     state: {
-        postsFilter: {}
+        postsFilter: {
+            pageCount:0
+        }
     },
     getters: {},
     mutations: {
