@@ -13,7 +13,7 @@
     <v-card-actions style="display: block !important;">
       <v-spacer></v-spacer>
       <h3>{{props.post.title}}</h3><small>{{props.post.category.title}}</small>
-      <v-btn class="show-more" variant="outlined">ادامه مطلب</v-btn>
+      <v-btn class="show-more" variant="outlined" @click="$router.push(`/post/${props.post.slug}`)">ادامه مطلب</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -25,8 +25,6 @@ const props = defineProps({
     type: Object
   }
 });
-console.log(props.post)
-
 </script>
 
 <style scoped>

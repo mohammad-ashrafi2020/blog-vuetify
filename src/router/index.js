@@ -1,5 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import HomePage from '../pages/HomeView.vue'
 
 import AdminLayout from "@/Layouts/AdminLayout";
 import MainLayout from "@/Layouts/MainLayout";
@@ -18,6 +17,9 @@ import EditCategory from "../pages/admin/categories/EditCategory";
 import IndexPost from "../pages/admin/posts/IndexPost";
 import AddPost from "../pages/admin/posts/AddPost";
 import EditPost from "../pages/admin/posts/EditPost";
+/////////////////////////////////////////////////////
+import HomePage from '../pages/HomeView.vue'
+import PostPage from '../pages/Post/Index.vue'
 
 
 const routes = [
@@ -29,6 +31,11 @@ const routes = [
                 path:"",
                 name:"home",
                 component: HomePage
+            },
+            {
+                path:"post/:slug",
+                name:"singlePost",
+                component: PostPage
             }
         ]
     },

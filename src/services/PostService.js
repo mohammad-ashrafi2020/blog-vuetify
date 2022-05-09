@@ -7,3 +7,8 @@ export const GetPopularPosts = () => {
         toast.error("عملیات با شکست مواجه شد")
     });
 }
+export const getPostBySlug = (slug) => {
+    return axios.get(`/api/post/getBySlug/${slug}`).catch(err => {
+        toast.error("عملیات با شکست مواجه شد")
+    });
+}

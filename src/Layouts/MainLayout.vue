@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {GetCategories} from "../Services/CategoryService"
+import {GetCategories} from "../services/CategoryService"
 
 export default {
   data: () => ({

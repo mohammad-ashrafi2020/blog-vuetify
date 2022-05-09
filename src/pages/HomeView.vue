@@ -9,7 +9,7 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
-import {GetPopularPosts} from "../Services/PostService"
+import {GetPopularPosts} from "../services/PostService"
 import PostCard from "@/components/PostCard";
 
 const posts = ref([]);
