@@ -20,6 +20,7 @@ import EditPost from "../pages/admin/posts/EditPost";
 /////////////////////////////////////////////////////
 import HomePage from '../pages/HomeView.vue'
 import PostPage from '../pages/Post/Index.vue'
+import SearchPage from '../pages/SearchView'
 
 
 const routes = [
@@ -36,6 +37,11 @@ const routes = [
                 path:"post/:slug",
                 name:"singlePost",
                 component: PostPage
+            },
+            {
+                path:"search",
+                name:"searchPage",
+                component: SearchPage
             }
         ]
     },

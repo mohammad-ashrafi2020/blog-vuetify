@@ -5,7 +5,7 @@ const toast = useToast();
 export default {
     state: {
         postsFilter: {
-            pageCount:0
+            pageCount: 0
         }
     },
     getters: {},
@@ -49,7 +49,7 @@ export default {
         },
         addPost(context, post) {
             context.commit("setLoading", true);
-            return axios.post(`/api/post`,post)
+            return axios.post(`/api/post`, post)
                 .catch(err => {
                     toast.error("عملیات با شکست مواجه شد");
                 }).finally(() => {
@@ -58,11 +58,11 @@ export default {
         },
         editPost(context, post) {
             context.commit("setLoading", true);
-            return axios.put(`/api/post`,post)
+            return axios.put(`/api/post`, post)
                 .catch(err => {
-                    if(err.response.data){
+                    if (err.response.data) {
                         toast.error(err.response.data);
-                    }else{
+                    } else {
                         toast.error("عملیات با شکست مواجه شد");
                     }
                 }).finally(() => {

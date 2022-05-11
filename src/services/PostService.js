@@ -12,3 +12,8 @@ export const getPostBySlug = (slug) => {
         toast.error("عملیات با شکست مواجه شد")
     });
 }
+export const getPostByFilter = ({pageId, title, take, categorySlug}) => {
+    return axios.get(`/api/post`, {params: {pageId, title, take, categorySlug}}).catch(err => {
+        toast.error("عملیات با شکست مواجه شد")
+    });
+}

@@ -1,5 +1,11 @@
 <template>
   <v-card>
+<!--    <div class="search">-->
+<!--      <div class="content">-->
+<!--        <v-text-field label="جستوجو"/>-->
+<!--        <v-btn>جسجو کن</v-btn>-->
+<!--      </div>-->
+<!--    </div>-->
     <v-layout>
       <v-app-bar
           color="primary"
@@ -7,11 +13,14 @@
       >
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>کدیاد بلاگ</v-toolbar-title>
+        <v-toolbar-title>
+          <router-link to="/">کدیاد بلاگ</router-link>
+        </v-toolbar-title>
 
         <v-spacer></v-spacer>
 
-        <v-btn variant="text" icon="mdi-magnify"></v-btn>
+        <v-btn variant="text" icon="mdi-magnify" @click="search"></v-btn>
+        <v-text-field v-model="searchValue" type="search" class="mt-10" label="جستوجو" @keydown.enter="search"/>
 
         <v-btn variant="text" icon="mdi-account" @click="$router.push('/admin')"></v-btn>
       </v-app-bar>
@@ -24,7 +33,7 @@
           permanent
       >
         <v-list color="transparent">
-          <router-link v-for="item in categories" to="/admin">
+          <router-link v-for="item in categories" :to="`search?categorySlug=${item.slug}`">
             <v-list-item prepend-icon="mdi-view-dashboard" v-ripple :title="item.title"></v-list-item>
           </router-link>
 
@@ -40,18 +49,24 @@
 </template>
 
 <script>
-import {GetCategories} from "../services/CategoryService"
+import {GetCategories} from "@/services/CategoryService"
 
 export default {
   data: () => ({
     drawer: false,
-    categories: []
+    categories: [],
+    searchValue:""
   }),
 
   watch: {
     group() {
       this.drawer = false
     },
+  },
+  methods:{
+    search(){
+      this.$router.push({path:"/search",query:{q:this.searchValue}})
+    }
   },
   mounted() {
     GetCategories().then(res => {
