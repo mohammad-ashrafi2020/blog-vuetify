@@ -1,11 +1,11 @@
 <template>
   <v-card>
-<!--    <div class="search">-->
-<!--      <div class="content">-->
-<!--        <v-text-field label="جستوجو"/>-->
-<!--        <v-btn>جسجو کن</v-btn>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <div class="search">-->
+    <!--      <div class="content">-->
+    <!--        <v-text-field label="جستوجو"/>-->
+    <!--        <v-btn>جسجو کن</v-btn>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <v-layout>
       <v-app-bar
           color="primary"
@@ -33,7 +33,7 @@
           permanent
       >
         <v-list color="transparent">
-          <router-link v-for="item in categories" :to="`search?categorySlug=${item.slug}`">
+          <router-link v-for="item in categories" :to="`/search?categorySlug=${item.slug}`">
             <v-list-item prepend-icon="mdi-view-dashboard" v-ripple :title="item.title"></v-list-item>
           </router-link>
 
@@ -55,7 +55,7 @@ export default {
   data: () => ({
     drawer: false,
     categories: [],
-    searchValue:""
+    searchValue: ""
   }),
 
   watch: {
@@ -63,15 +63,16 @@ export default {
       this.drawer = false
     },
   },
-  methods:{
-    search(){
-      this.$router.push({path:"/search",query:{q:this.searchValue}})
+  methods: {
+    search() {
+      this.$router.push({path: "/search", query: {q: this.searchValue}})
     }
   },
   mounted() {
+    this.searchValue = this.$route.query.q;
     GetCategories().then(res => {
-      if(res.status===200){
-        this.categories=res.data;
+      if (res.status === 200) {
+        this.categories = res.data;
       }
     })
   }

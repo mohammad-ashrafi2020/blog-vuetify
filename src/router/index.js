@@ -22,6 +22,7 @@ import HomePage from '../pages/HomeView.vue'
 import PostPage from '../pages/Post/Index.vue'
 import SearchPage from '../pages/SearchView'
 
+import NotFound from "../pages/NotFoundView.vue"
 
 const routes = [
     {
@@ -29,18 +30,18 @@ const routes = [
         component: MainLayout,
         children: [
             {
-                path:"",
-                name:"home",
+                path: "",
+                name: "home",
                 component: HomePage
             },
             {
-                path:"post/:slug",
-                name:"singlePost",
+                path: "post/:slug",
+                name: "singlePost",
                 component: PostPage
             },
             {
-                path:"search",
-                name:"searchPage",
+                path: "search",
+                name: "searchPage",
                 component: SearchPage
             }
         ]
@@ -59,13 +60,13 @@ const routes = [
             },
             {
                 path: "users/add",
-                name:"addUser",
+                name: "addUser",
                 component: AddUser
             }
             ,
             {
                 path: "users/Edit/:id",
-                name:"editUser",
+                name: "editUser",
                 component: EditUser
             },
 
@@ -75,31 +76,33 @@ const routes = [
             },
             {
                 path: "categories/add",
-                name:"addCategory",
+                name: "addCategory",
                 component: AddCategory
             },
             {
                 path: "categories/Edit/:id",
-                name:"editCategory",
+                name: "editCategory",
                 component: EditCategory
             },
             {
                 path: "posts",
-                name:"posts",
+                name: "posts",
                 component: IndexPost
             },
             {
                 path: "posts/add",
-                name:"addPost",
+                name: "addPost",
                 component: AddPost
             },
             {
                 path: "posts/edit/:id",
-                name:"editPost",
+                name: "editPost",
                 component: EditPost
             }
         ]
-    }
+    },
+    {path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound},
+
 ]
 
 const router = createRouter({

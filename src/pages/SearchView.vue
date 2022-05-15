@@ -4,11 +4,14 @@
       <small v-if="filter.title">{{ filter.title }}</small>
     </h1>
     <div v-if="loading===false">
-      <v-row>
+      <v-row v-if="postFilterData.entityCount>0">
         <v-col cols="12" md="3" v-for="item in postFilterData.posts" :key="item.postId">
           <post-card :post="item"></post-card>
         </v-col>
       </v-row>
+      <v-alert v-else color="red" class="text-center text-white">
+        موردی برای نمایش وجود ندارد
+      </v-alert>
       <v-pagination
           v-if="postFilterData.pageCount>1"
           v-model="filter.pageId"
@@ -71,5 +74,7 @@ function filterPost() {
 </script>
 
 <style scoped>
-
+.text-white{
+  color: white !important;
+}
 </style>
